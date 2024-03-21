@@ -1,14 +1,25 @@
 #!/usr/bin/python3
-"""method that calculates the fewest number of operations """
+"""calculates the fewest number of operations """
 
 
-def minOperatons(n):
-    """method that calculates the fewest number of operations
-    needed to result in exactly n H characters in the file.
-    """
+def minOperations(n):
+    """Returns the minimum operations required to archieve n characters."""
     if n <= 1:
         return 0
-    for i in range(2, int(n ** 0.5) + 1):
-        if n % i == 0:
-            return i + minOperations(n // i)
-    return n
+    else:
+        for i in range(2, n + 1):
+            if n % i == 0:
+                return minOperations(n // i) + i
+        return n
+
+
+if __name__ == "__main__":
+    n = 4
+    print(
+        "Min # of operations to reach {} char: {}".format(n, minOperations(n))
+            )
+
+    n = 12
+    print(
+        "Min # of operations to reach {} char: {}".format(n, minOperations(n))
+            )
